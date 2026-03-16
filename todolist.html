@@ -1,0 +1,257 @@
+<!doctype html>
+
+<html class="light" lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Danh sách công việc (Todo List)</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#ec5b13",
+              "background-light": "#f8f6f6",
+              "background-dark": "#1a1614",
+              "surface-dark": "#2a221f",
+              "border-dark": "#3d322d",
+            },
+            fontFamily: {
+              display: ["Public Sans", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Public Sans", sans-serif;
+      }
+      .task-item:hover .action-buttons {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col items-center py-12 px-4"
+  >
+    <!-- Main Container -->
+    <div
+      class="w-full max-w-2xl bg-white dark:bg-surface-dark rounded-xl shadow-xl overflow-hidden border border-slate-200 dark:border-border-dark"
+    >
+      <!-- Header Section -->
+      <header
+        class="p-6 border-b border-slate-200 dark:border-border-dark flex items-center justify-between"
+      >
+        <div class="flex items-center gap-3">
+          <div class="bg-primary/10 p-2 rounded-lg">
+            <span class="material-symbols-outlined text-primary text-2xl"
+              >checklist</span
+            >
+          </div>
+          <h1 class="text-xl font-bold tracking-tight">Danh sách công việc</h1>
+        </div>
+        <div class="flex items-center gap-2">
+          <button
+            class="p-2 hover:bg-slate-100 dark:hover:bg-border-dark rounded-full transition-colors"
+          >
+            <span
+              class="material-symbols-outlined text-slate-500 dark:text-slate-400"
+              >more_vert</span
+            >
+          </button>
+        </div>
+      </header>
+      <!-- Input Section -->
+      <div class="p-6 bg-slate-50/50 dark:bg-background-dark/30">
+        <div class="flex gap-3">
+          <div class="relative flex-1">
+            <input
+              class="w-full bg-white dark:bg-background-dark border border-slate-200 dark:border-border-dark rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all placeholder:text-slate-400 dark:placeholder:text-slate-600"
+              placeholder="Nhập tên công việc mới..."
+              type="text"
+            />
+          </div>
+          <button
+            class="bg-primary hover:bg-primary/90 text-white font-semibold px-6 py-3 rounded-xl transition-all flex items-center gap-2"
+          >
+            <span class="material-symbols-outlined">add</span>
+            <span>Thêm</span>
+          </button>
+        </div>
+      </div>
+      <!-- Task List -->
+      <div class="p-2">
+        <!-- Task Item 1 -->
+        <div
+          class="task-item group flex items-center justify-between p-4 hover:bg-slate-50 dark:hover:bg-border-dark/30 rounded-lg transition-all border-b border-slate-50 dark:border-border-dark/20 last:border-0"
+        >
+          <div class="flex items-center gap-4 flex-1">
+            <label class="relative flex items-center cursor-pointer">
+              <input
+                class="peer h-6 w-6 cursor-pointer appearance-none rounded-full border border-slate-300 dark:border-slate-600 checked:bg-primary checked:border-primary transition-all"
+                type="checkbox"
+              />
+              <span
+                class="material-symbols-outlined absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-sm pointer-events-none"
+                >check</span
+              >
+            </label>
+            <span class="text-slate-700 dark:text-slate-200 font-medium"
+              >Thiết kế giao diện Dashboard cho khách hàng</span
+            >
+          </div>
+          <div
+            class="action-buttons flex items-center gap-1 opacity-0 transition-opacity"
+          >
+            <button
+              class="p-2 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-lg transition-all"
+            >
+              <span class="material-symbols-outlined text-xl">edit</span>
+            </button>
+            <button
+              class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-lg transition-all"
+            >
+              <span class="material-symbols-outlined text-xl">delete</span>
+            </button>
+          </div>
+        </div>
+        <!-- Task Item 2 (Completed) -->
+        <div
+          class="task-item group flex items-center justify-between p-4 hover:bg-slate-50 dark:hover:bg-border-dark/30 rounded-lg transition-all border-b border-slate-50 dark:border-border-dark/20 last:border-0"
+        >
+          <div class="flex items-center gap-4 flex-1">
+            <label class="relative flex items-center cursor-pointer">
+              <input
+                checked=""
+                class="peer h-6 w-6 cursor-pointer appearance-none rounded-full border border-slate-300 dark:border-slate-600 checked:bg-primary checked:border-primary transition-all"
+                type="checkbox"
+              />
+              <span
+                class="material-symbols-outlined absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-sm pointer-events-none"
+                >check</span
+              >
+            </label>
+            <span
+              class="text-slate-400 dark:text-slate-500 font-medium line-through"
+              >Gửi báo cáo tuần cho quản lý dự án</span
+            >
+          </div>
+          <div
+            class="action-buttons flex items-center gap-1 opacity-0 transition-opacity"
+          >
+            <button
+              class="p-2 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-lg transition-all"
+            >
+              <span class="material-symbols-outlined text-xl">edit</span>
+            </button>
+            <button
+              class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-lg transition-all"
+            >
+              <span class="material-symbols-outlined text-xl">delete</span>
+            </button>
+          </div>
+        </div>
+        <!-- Task Item 3 -->
+        <div
+          class="task-item group flex items-center justify-between p-4 hover:bg-slate-50 dark:hover:bg-border-dark/30 rounded-lg transition-all border-b border-slate-50 dark:border-border-dark/20 last:border-0"
+        >
+          <div class="flex items-center gap-4 flex-1">
+            <label class="relative flex items-center cursor-pointer">
+              <input
+                class="peer h-6 w-6 cursor-pointer appearance-none rounded-full border border-slate-300 dark:border-slate-600 checked:bg-primary checked:border-primary transition-all"
+                type="checkbox"
+              />
+              <span
+                class="material-symbols-outlined absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-sm pointer-events-none"
+                >check</span
+              >
+            </label>
+            <span class="text-slate-700 dark:text-slate-200 font-medium"
+              >Họp team brainstorm tính năng mới</span
+            >
+          </div>
+          <div
+            class="action-buttons flex items-center gap-1 opacity-0 transition-opacity"
+          >
+            <button
+              class="p-2 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-lg transition-all"
+            >
+              <span class="material-symbols-outlined text-xl">edit</span>
+            </button>
+            <button
+              class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-lg transition-all"
+            >
+              <span class="material-symbols-outlined text-xl">delete</span>
+            </button>
+          </div>
+        </div>
+        <!-- Empty State (Hidden by default, shown when list is empty) -->
+        <div
+          class="hidden flex-col items-center justify-center py-12 text-center"
+        >
+          <div class="bg-slate-100 dark:bg-border-dark p-4 rounded-full mb-4">
+            <span class="material-symbols-outlined text-4xl text-slate-400"
+              >inbox</span
+            >
+          </div>
+          <p class="text-slate-500 dark:text-slate-400 font-medium">
+            Chưa có công việc
+          </p>
+        </div>
+      </div>
+      <!-- Footer / Status Bar -->
+      <footer
+        class="p-4 bg-slate-50 dark:bg-background-dark/50 border-t border-slate-200 dark:border-border-dark flex items-center justify-between"
+      >
+        <div class="flex items-center gap-2">
+          <span class="text-sm font-medium text-slate-500 dark:text-slate-400"
+            >Đã hoàn thành:</span
+          >
+          <span class="text-sm font-bold text-primary">1 trên 3 công việc</span>
+        </div>
+        <!-- Success Message (Visible when all tasks done) -->
+        <div
+          class="hidden flex items-center gap-2 text-green-600 dark:text-green-400 text-sm font-bold"
+        >
+          <span class="material-symbols-outlined text-lg">verified</span>
+          <span>Tất cả công việc đã hoàn thành</span>
+        </div>
+        <div class="flex gap-2">
+          <button
+            class="text-xs font-semibold px-3 py-1.5 rounded-lg text-slate-500 hover:bg-slate-200 dark:hover:bg-border-dark transition-all uppercase tracking-wider"
+          >
+            Xóa tất cả
+          </button>
+        </div>
+      </footer>
+    </div>
+    <!-- Decorative Illustration Background (Abstract) -->
+    <div class="fixed bottom-0 right-0 p-8 opacity-10 pointer-events-none">
+      <div class="w-64 h-64 bg-primary rounded-full blur-[100px]"></div>
+    </div>
+    <div class="fixed top-0 left-0 p-8 opacity-10 pointer-events-none">
+      <div class="w-48 h-48 bg-primary rounded-full blur-[80px]"></div>
+    </div>
+  </body>
+</html>
