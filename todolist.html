@@ -100,8 +100,9 @@
           </button>
         </div>
       </div>
+
       <!-- Task List -->
-      <div class="p-2">
+      <div id="task-list" class="p-2">
         <!-- Task Item 1 -->
         <div
           class="task-item group flex items-center justify-between p-4 hover:bg-slate-50 dark:hover:bg-border-dark/30 rounded-lg transition-all border-b border-slate-50 dark:border-border-dark/20 last:border-0"
@@ -220,11 +221,13 @@
           </p>
         </div>
       </div>
+
       <!-- Footer / Status Bar -->
       <footer
+        id="footer"
         class="p-4 bg-slate-50 dark:bg-background-dark/50 border-t border-slate-200 dark:border-border-dark flex items-center justify-between"
       >
-        <div class="flex items-center gap-2">
+        <div id="completedOfTotal" class="flex items-center gap-2">
           <span class="text-sm font-medium text-slate-500 dark:text-slate-400"
             >Đã hoàn thành:</span
           >
@@ -232,6 +235,7 @@
         </div>
         <!-- Success Message (Visible when all tasks done) -->
         <div
+          id="completed-all"
           class="hidden flex items-center gap-2 text-green-600 dark:text-green-400 text-sm font-bold"
         >
           <span class="material-symbols-outlined text-lg">verified</span>
@@ -253,5 +257,7 @@
     <div class="fixed top-0 left-0 p-8 opacity-10 pointer-events-none">
       <div class="w-48 h-48 bg-primary rounded-full blur-[80px]"></div>
     </div>
+
+    <script src="./todolist.js"></script>
   </body>
 </html>
