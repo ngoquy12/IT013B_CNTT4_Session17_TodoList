@@ -1,5 +1,5 @@
 // Khởi tạo dữ liệu ban đầu cho danh sách công việc
-const jobs = [
+const listJob = [
   {
     id: 1,
     name: "Thiết kế giao diện Dashboard cho khách hàng",
@@ -17,11 +17,19 @@ const jobs = [
   },
 ];
 
+// Đẩy dữ liệu mẫu lên local
+// localStorage.setItem("jobs", JSON.stringify(listJob));
+
+const jobs = JSON.parse(localStorage.getItem("jobs")) || [];
+
 // Lấy ra các phần tử trong HTML
 const taskListElement = document.querySelector("#task-list");
 const footerElement = document.querySelector("#footer");
 const completedOfTotalElement = document.querySelector("#completedOfTotal");
 const completedAllElement = document.querySelector("#completed-all");
+const inputElement = document.querySelector("#input");
+const buttonElement = document.querySelector("#button");
+const buttonClearElement = document.querySelector("#button-clear");
 
 // Hàm tính số lượng công việc đã hoàn thành
 const caculatorJobCompleted = (jobs) => {
@@ -110,3 +118,48 @@ const renderData = (jobs) => {
 };
 
 renderData(jobs);
+
+// Lắng nghe sự kiện thêm
+buttonElement.addEventListener("click", () => {
+  // Lấy dữ liệu từ input
+  // Validate dữ liệu: kiểm tra rỗng, trùng
+  if (!inputElement.value) {
+    alert("Tên công việc không được để trống");
+  } else {
+    // Tạo đối tượng công việc mới
+    const newJob = {
+      id: jobs.length + 1,
+      name: inputElement.value,
+      status: false,
+    };
+
+    // Thêm công việc vào mảng
+    jobs.unshift(newJob);
+
+    // Đẩy dữ liệu mới lên local
+    localStorage.setItem("jobs", JSON.stringify(jobs));
+
+    // Render lại dữ liệu mới nhất
+    renderData(jobs);
+
+    // Xóa giá trị trong input
+    inputElement.value = "";
+  }
+});
+
+const handleClearAllData = () => {
+  const isConfirm = confirm("Bạn có xác nhận xóa tất cả dữ liệu không?");
+
+  if (isConfirm) {
+    const emptyJobs = [];
+
+    // Làm rỗng dữ liệu trên local
+    localStorage.setItem("jobs", JSON.stringify(emptyJobs));
+
+    // Render lại giao diện
+    renderData(emptyJobs);
+  }
+};
+
+// Lắng nghe sự kiện xóa tất cả công việc
+buttonClearElement.addEventListener("click", handleClearAllData);
